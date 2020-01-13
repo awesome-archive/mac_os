@@ -31,6 +31,7 @@ the two projects are meant to be used:
   - [Setup](#setup)
   - [Usage](#usage)
     - [Boot Disk](#boot-disk)
+    - [Startup Security Utility](#startup-security-utility)
     - [Customization](#customization)
   - [Troubleshooting](#troubleshooting)
   - [Versioning](#versioning)
@@ -60,11 +61,11 @@ the two projects are meant to be used:
 
 ## Screencast
 
-[![asciicast](https://asciinema.org/a/155990.png)](https://asciinema.org/a/155990)
+[![asciicast](https://asciinema.org/a/278158.svg)](https://asciinema.org/a/278158)
 
 ## Requirements
 
-1. [macOS Mojave](https://www.apple.com/macos) (with latest software updates applied)
+1. [macOS Catalina](https://www.apple.com/macos/catalina) (with latest software updates applied)
 1. [Xcode](https://developer.apple.com/xcode) (with accepted license agreement)
 
 ## Setup
@@ -76,7 +77,7 @@ Current Version (stable):
 
     git clone https://github.com/bkuhlmann/mac_os.git
     cd mac_os
-    git checkout 7.1.2
+    git checkout 8.0.1
 
 Master Version (unstable):
 
@@ -153,6 +154,32 @@ documentation (provided here for reference):
       3. Hold down the COMMAND+R keys before the Apple logo appears.
       4. Wait for the macOS installer to load from the recovery partition.
       5. Use the dialog options to launch Disk Utility, reinstall the system, etc.
+
+Depending on your security settings, you might need to use the Startup Security Utility before using
+the Boot Disk (see below).
+
+### [Startup Security Utility](https://support.apple.com/en-us/HT208198)
+
+With newer hardware, you should be running with the Apple T2 Security Chip (found via  → About This
+Mac → Overview → System Report → Controller). In order to boot your machine using the Boot Disk,
+you'll need to *temporarily* disable the default security settings as follows:
+
+- Turn on or restart your Mac, then press and hold `COMMAND + R` immediately after seeing the Apple
+  logo.
+- Select Utilities → Startup Security Utility from the main menu.
+- Click "Turn Off Firmware Password".
+- Select "Secure Boot: No Security".
+- Select "External Boot: Allow booting from external media".
+- Quit the utility and restart the machine.
+
+You'll now be able to boot your system with the Boot Disk (see above).
+
+After the new operating system has been installed via the Boot Disk, *ensure you return to the
+Startup Security Utility and re-enable the following settings*:
+
+- Click "Turn On Firmware Password".
+- Select "Secure Boot: Full Security".
+- Select "External Boot: Disallow booting from external or removable media".
 
 ### Customization
 
